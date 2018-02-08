@@ -1,0 +1,35 @@
+GIT
+  remote: https://github.com/Eugenpaul/digest-sha3-ruby.git
+  revision: e72822f8a73a91fb76c6da0be024178cdaedafa4
+  branch: fix_format_security
+  specs:
+    digest-sha3 (1.1.0)
+
+PATH
+  remote: .
+  specs:
+    w3 (0.0.0)
+      commander
+      speculation
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    commander (4.4.4)
+      highline (~> 1.7.2)
+    concurrent-ruby (1.0.5)
+    highline (1.7.10)
+    rantly (1.1.0)
+    speculation (0.4.2)
+      concurrent-ruby (~> 1.0)
+      rantly (~> 1.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  digest-sha3!
+  w3!
+
+BUNDLED WITH
+   1.16.1
