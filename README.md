@@ -21,15 +21,10 @@ This gem has not been released yet, but if you want to contribute or play around
 Now follow along with this example
 ```ruby
 irb(main):001:0> require 'w3'
-=> true
 irb(main):002:0> url = "http://localhost:8545"
-=> "http://localhost:8545"
 irb(main):003:0> http_client = W3::Http_Client.new(url)
-=> #<W3::Http_Client:0x000000016cf600 @uri=#<URI::HTTP http://localhost:8545>, @host="localhost", @port=8545>
 irb(main):004:0> eth = W3::ETH.new(http_client)
-=> #<W3::ETH:0x000000016d7288 @client=#<W3::Http_Client:0x000000016cf600 @uri=#<URI::HTTP http://localhost:8545>, @host="localhost", @port=8545>>
 irb(main):005:0> accounts = eth.get_accounts
-=> ["0xe0f79b01552163b107b7fc31be6ab5922d9b94ac", "0x2e53f177c1eb8b25472cf03bea5a571771d38f78", "0xc0bccaf70c787ca4d53ed13a6e2c7db123716493", "0x24780b3fd60c3337e58edbb8510a2b0ea4ec776c", "0x45b7ad0e25faa4776ad44777fd6ab7e3ccd0c8a6", "0xeebeb43160e0262b1c033a46a720378bf5284ef0", "0x9e93aaba3fe5ba61e4b941efbc9a26f47c7c0d5b", "0xc59d3844e5fbf5e7c6abce3f606bc5a8996cec26", "0x59079ed9fcbac32ccf2ed4228c8b90f8ac7bb28b", "0xa037170528fb5beffd4f953ac784539530cf2c83"]
 ```
 
 Or run `ruby test/test.rb`
