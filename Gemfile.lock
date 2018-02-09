@@ -9,16 +9,12 @@ PATH
   remote: .
   specs:
     w3 (0.0.0)
-      commander
       speculation
 
 GEM
   remote: https://rubygems.org/
   specs:
-    commander (4.4.4)
-      highline (~> 1.7.2)
     concurrent-ruby (1.0.5)
-    highline (1.7.10)
     rantly (1.1.0)
     speculation (0.4.2)
       concurrent-ruby (~> 1.0)

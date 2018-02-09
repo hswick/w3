@@ -10,7 +10,6 @@ Gem::Specification.new do |s|
   s.homepage    = 'http://rubygems.org/gems/w3'
   s.license     = 'MIT'
 
-  s.add_dependency "commander"
   s.add_dependency "speculation"
   #s.add_dependency "digest-sha3"
 end
