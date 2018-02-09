@@ -15,7 +15,21 @@ GEM
   remote: https://rubygems.org/
   specs:
     concurrent-ruby (1.0.5)
+    diff-lcs (1.3)
     rantly (1.1.0)
+    rspec (3.7.0)
+      rspec-core (~> 3.7.0)
+      rspec-expectations (~> 3.7.0)
+      rspec-mocks (~> 3.7.0)
+    rspec-core (3.7.1)
+      rspec-support (~> 3.7.0)
+    rspec-expectations (3.7.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.7.0)
+    rspec-mocks (3.7.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.7.0)
+    rspec-support (3.7.1)
     speculation (0.4.2)
       concurrent-ruby (~> 1.0)
       rantly (~> 1.0)
@@ -25,6 +39,8 @@ PLATFORMS
 
 DEPENDENCIES
   digest-sha3!
+  rspec
+  rspec-core
   w3!
 
 BUNDLED WITH

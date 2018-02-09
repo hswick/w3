@@ -43,7 +43,7 @@ Wanted to be in full control of my vision for what developing dapps in Ruby coul
 - Dynamically create method definition specs based on abi
 - Utilize speculation to generate tests to hopefully make development a little bet less about basic tests
 
-Huge shout out to [ethereum.rb](https://github.com/EthWorks/ethereum.rb) for guidance on how to encoding and developing a client.
+Huge shout out to [ethereum.rb](https://github.com/EthWorks/ethereum.rb) for guidance and inspiration.
 
 ## The MIT License (MIT)
 

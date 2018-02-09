@@ -1,0 +1,9 @@
+language: ruby
+
+install:
+  - sudo apt-get update
+  - gem install bundler
+  - bundle install
+
+scriipt:
+  - rspec --format doc
