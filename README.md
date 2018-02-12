@@ -61,6 +61,8 @@ Wanted to be in full control of my vision for what developing dapps in Ruby coul
 
 Huge shout out to [ethereum.rb](https://github.com/EthWorks/ethereum.rb) for guidance and inspiration.
 
+Logo made with this [web tool](https://photofunia.com/categories/all_effects/retro-wave)
+
 ## The MIT License (MIT)
 
 Copyright 2018 Harley Swick
