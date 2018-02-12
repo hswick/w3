@@ -35,13 +35,13 @@ module W3
     S.def ns(:bool_array), S.coll_of(ns(:bool))
     
     S.def :"W3::ETH_Type/0x", ->(x){x[0..1] == "0x"}
-    S.def ns(:address_length), ->(x){x[1..-1].bytesize == 20 * 2}
+    S.def ns(:address_length), ->(x){x[2..-1].bytesize == 20 * 2}
     S.def ns(:address), S.and(:"W3::ETH_Type/0x", ns(:address_length))
     S.def ns(:address_array), S.coll_of(ns(:address))
   
     S.def :"W3::ETH_Type/utf-8", ->(x){x.encoding.to_s == "UTF-8"}
-    S.def ns(:bytes), String
-    S.def ns(:string), S.and(String, :"W3::ETH_Type/utf-8")
+    S.def ns(:bytes), S.and(String, ->(x){x.length > 0})
+    S.def ns(:string), S.and(ns(:bytes), :"W3::ETH_Type/utf-8")
   
     S.def ns(:bytes_array), S.coll_of(ns(:bytes))
     S.def ns(:string_array), S.coll_of(ns(:string))

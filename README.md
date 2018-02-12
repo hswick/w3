@@ -6,28 +6,25 @@ ETH + Ruby = <3
 
 ## Installation
 
+Ensure you have ruby and bundle installed. It is recommended you install ruby with rvm.
+
+Install bundler: `gem install bundler`
+
+Clone this repo
+```
+cd w3
+bundle install
+```
+
+
 Ensure you have a blockchain that you can connect to. An easy development one is ganache-cli
 `npm install -g ganache-cli`
 In a separate tab run `ganache-cli`
 
-This gem has not been released yet, but if you want to contribute or play around with it you can:
-
-1. clone the repo
-2. `cd w3`
-3. `gem build w3.gemspec`
-4. `gem install ./w3-0.0.0.gem`
-5. `irb`
-
-Now follow along with this example
-```ruby
-irb(main):001:0> require 'w3'
-irb(main):002:0> url = "http://localhost:8545"
-irb(main):003:0> http_client = W3::Http_Client.new(url)
-irb(main):004:0> eth = W3::ETH.new(http_client)
-irb(main):005:0> accounts = eth.get_accounts
+Then to run the tests you can do:
 ```
-
-Or run `ruby test/test.rb`
+rspec --format doc
+```
 
 ## Yet another Ethereum client for Ruby?
 After looking at other solutions I didn't feel like the other Ethereum libraries only did the job of web3. They either combined the roles of truffle or etherscan, which I didn't feel like was appropriate for the intent of this library.
