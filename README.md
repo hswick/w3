@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./w3_logo.jpg"/>
+  <img src="./w3_logo2.jpg"/>
 </p>
 
 # Intent
