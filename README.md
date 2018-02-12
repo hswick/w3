@@ -16,7 +16,6 @@ cd w3
 bundle install
 ```
 
-
 Ensure you have a blockchain that you can connect to. An easy development one is ganache-cli
 `npm install -g ganache-cli`
 In a separate tab run `ganache-cli`
@@ -24,6 +23,11 @@ In a separate tab run `ganache-cli`
 Then to run the tests you can do:
 ```
 rspec --format doc
+```
+
+You can run an example by ensuring you are in the root('w3') directory
+```
+ruby examples/*example*.rb
 ```
 
 ## Yet another Ethereum client for Ruby?

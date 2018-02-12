@@ -6,12 +6,13 @@ RSpec.describe W3::Contract do
     http_client = W3::Http_Client.new(url)
     @eth = W3::ETH.new(http_client)
     @accounts = @eth.get_accounts
-    @simple_storage = W3::Contract.new(@eth, "SimpleStorage")
+    abi = JSON.parse(File.read(File.join(File.dirname(__FILE__), '../examples/build/SimpleStorage.abi')))
+    @simple_storage = W3::Contract.new(@eth, abi)
   end
 
   context "using simple storage contract" do
     before(:example) do
-      bin =  File.read('./build/SimpleStorage.bin')
+      bin = File.read(File.join(File.dirname(__FILE__), '../examples/build/SimpleStorage.bin'))
       @simple_storage.at! @simple_storage.deploy!(bin, {"from" => @accounts[0], "gas" => 300000})
     end
 

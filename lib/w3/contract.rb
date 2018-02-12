@@ -12,15 +12,16 @@ end
 module W3
 
   class Contract
+
     include Encoder
     include Decoder
-    attr_reader :abi, :contract_name, :address
+    attr_reader :abi, :address, :contract_name
     
-    def initialize(eth, contract_name, address=nil)
-      @abi = read_abi(contract_name)
-      @contract_name = contract_name
-      @eth = eth
+    def initialize(eth, abi, address=nil, contract_name="")
+      @eth = check_spec eth, W3::ETH
+      @abi = check_spec abi, S.coll_of(Hash) 
       @address = address
+      @contract_name = contract_name
   
       #dynamically generate methods
       @abi.each do |method_spec|
@@ -52,6 +53,11 @@ module W3
     end
   
     private
+    def check_spec(value, spec)
+      raise S.explain_str(spec, value) if S.invalid? S.conform(spec, value)
+      value
+    end
+
     def gen_method_id(name, types)
       id = String.new(name)
       id << "("
@@ -99,14 +105,6 @@ module W3
           "data" => encoded_inputs.unshift(method_id).join
         })
       end
-    end
-  
-    def read_abi(filename)
-      JSON.parse(File.read("build/#{filename}.abi"))
-    end
-  
-    def read_bin(filename)
-      File.read("build/#{filename}.bin")
     end
   end
 end

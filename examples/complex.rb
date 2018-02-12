@@ -1,4 +1,4 @@
-require './w3'
+require './lib/w3'
 
 url = "http://localhost:8545"
 http_client = W3::Http_Client.new(url)
@@ -7,9 +7,10 @@ eth = W3::ETH.new(http_client)
 
 accounts = eth.get_accounts
 
-complex = W3::Contract.new(eth, "Complex")
+abi = JSON.parse(File.read(File.join(File.dirname(__FILE__), './build/Complex.abi')))
+complex = W3::Contract.new(eth, abi)
 
-bin =  File.read('./build/Complex.bin')
+bin =  File.read(File.join(File.dirname(__FILE__), './build/Complex.abi'))
 complex.at! complex.deploy!(bin, {"from" => accounts[0], "gas" => 300000}, 6, "foo")
 
 pp complex.get_both
