@@ -1,10 +1,12 @@
-# w3
+<p align="center">
+  <img src="./w3_logo.jpg"/>
+</p>
+
+# Intent
 
 Blockchains are awesome, but developing dapps leaves a lot to be desired. I wanted to ease my pain with a language that was designed to make programmers happy.
 
 ETH + Ruby = <3
-
-# Intent
 
 ## Keep it simple, stupid
 The intent is not for this to be a one stop shop for all things Ethereum in Ruby. Rather this is meant to be json-rpc client for Ethereum. That's it. And other libraries can use this to build a dapp framework around it.
