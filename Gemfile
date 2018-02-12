@@ -6,4 +6,5 @@ gem "digest-sha3", :git => 'https://github.com/Eugenpaul/digest-sha3-ruby.git', 
 group :development do
   gem 'rspec'
   gem 'rspec-core'
+  gem 'rake'
 end
