@@ -4,6 +4,26 @@ Blockchains are awesome, but developing dapps leaves a lot to be desired. I want
 
 ETH + Ruby = <3
 
+# Intent
+
+## Keep it simple, stupid
+The intent is not for this to be a one stop shop for all things Ethereum in Ruby. Rather this is meant to be json-rpc client for Ethereum. That's it. And other libraries can use this to build a dapp framework around it.
+
+## Safety
+The secret sauce of this library is the usage of the speculation gem. speculation is a port of clojure.spec, which you can read more about [here](https://github.com/english/speculation). w3 spec's out the [Ethereum types](https://github.com/ethereum/wiki/wiki/Ethereum-Contract-ABI). Giving type like safety to a dynamic programming language like Ruby! No more 'invalid args to Solidity' error messages and other nonsense.
+
+There are other safety measures as well. This library ensures that getter methods should be called with 'eth_call' and setter methods should be called with 'eth_sendTransaction'.
+
+Getters look like normal syntax:
+```ruby
+simple_storage.get
+```
+
+Setters use the bang to emphasize changing state and that you are spending precious ETH!!!
+```ruby
+simple_storage.set! 42, {"from" => accounts[0]}
+```
+
 ## Installation
 
 Ensure you have ruby and bundle installed. It is recommended you install ruby with rvm.
@@ -21,7 +41,7 @@ Ensure you have a blockchain that you can connect to. An easy development one is
 In a separate tab run `ganache-cli`
 
 Then to run the tests you can do:
-```
+```bash
 rspec --format doc
 ```
 
@@ -36,13 +56,6 @@ After looking at other solutions I didn't feel like the other Ethereum libraries
 This was a fun chance to learn the internals of an Ethereum client and how to format the transaction messages.
 
 Wanted to be in full control of my vision for what developing dapps in Ruby could be like. The vision of this library incorporates my experiences working with different languages. I want the Rust community's emphasis on safety because the blockchain space is scary and mistakes cost money. I want Clojure's expressiveness and minimal reliance on objects or classes. I figured I could possibly get both by using the `speculation` gem.
-
-# Desires
-- Dynamically create classes based on abi with methods being in snake case
-- Getters use `eth_call`, setters use `eth_sendTransaction` and use the bang(!) at end of method names to denote changing of state locally or on the blockchain. This is important because changing state on blockchain costs precious ETH!!!
-- Use `speculation` gem to enforce value correctness, type like safety, and present good error messages
-- Dynamically create method definition specs based on abi
-- Utilize speculation to generate tests to hopefully make development a little bet less about basic tests
 
 Huge shout out to [ethereum.rb](https://github.com/EthWorks/ethereum.rb) for guidance and inspiration.
 
