@@ -1,6 +1,8 @@
 module W3
   module Encoder
 
+    @@encoding = {}
+
     def encode_inputs(inputs, inputs_spec)
       if inputs && inputs_spec
         [].tap do |input|
@@ -15,36 +17,29 @@ module W3
     end
 
     def encode_value(type, value)
-      case type
-      when "uint256"
-        encode_int(value)
-      when "bytes32"
-        encode_static_bytes(value)
-      when "bool"
-        encode_bool(value)
-      else
-        raise "Unable to encode type: #{type}"
-      end
+      encoded_value = @@encoding[type].call(value)
+      raise "Unable to encode type: #{type}" if encoded_value.nil?
+      encoded_value
     end
 
-    def encode_int(value)
-      to_twos_complement(value).to_s(16).rjust(64, '0')
-    end
-
-    def encode_static_bytes(value)
-      value.bytes.map {|x| x.to_s(16).rjust(2, '0')}.join("").ljust(64, '0')
-    end
-
-    def encode_bool(value)
-      (value ? "1" : "0").rjust(64, '0')
-    end
-  
-    def to_twos_complement(number)
+    def self.to_twos_complement(number)
       (number & ((1 << 256) - 1))
     end
 
     def to_hex_string(value)
       value.to_s(16)
+    end
+
+    @@encoding["uint256"] = fn do |value|
+      to_twos_complement(value).to_s(16).rjust(64, '0')
+    end
+
+    @@encoding["bytes32"] = fn do |value|
+      value.bytes.map {|x| x.to_s(16).rjust(2, '0')}.join("").ljust(64, '0')
+    end
+
+    @@encoding["bool"] = fn do |value|
+      (value ? "1" : "0").rjust(64, '0')
     end
 
   end

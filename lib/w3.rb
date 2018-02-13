@@ -9,6 +9,11 @@ require 'speculation'
 
 S = Speculation
 
+# Getting a bit more clojurey
+def fn(&block)
+  block
+end
+
 module W3
   require 'w3/eth_type'
   require 'w3/encoder'
