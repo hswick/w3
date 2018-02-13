@@ -43,7 +43,7 @@ module W3
     end
 
     def deploy!(contract_binary, options, *args)
-      encoded_inputs = encode_inputs(args, @constructor_args)
+      encoded_inputs = W3::Encoder::encode_inputs(args, @constructor_args)
       tx = @eth.send_transaction!({
         "from" => options["from"],
         "data" => encoded_inputs.unshift("0x" + contract_binary).join,
@@ -84,12 +84,12 @@ module W3
     def gen_getter(method_spec)
       method_id = "0x" + calc_id(gen_method_id(method_spec["name"], get_types(method_spec)))
       self.class.send(:define_method, method_spec["name"].underscore) do |*args|
-        encoded_inputs = encode_inputs(args, method_spec["inputs"])
+        encoded_inputs = W3::Encoder::encode_inputs(args, method_spec["inputs"])
         outputs = @eth.call({
           "to" => @address,
           "data" => encoded_inputs.unshift(method_id).join
         })
-        decode_outputs(outputs, method_spec["outputs"])
+        W3::Decoder::decode_outputs(outputs, method_spec["outputs"])
       end
     end
   
@@ -98,7 +98,7 @@ module W3
       method_id = "0x" + calc_id(gen_method_id(method_spec["name"], get_types(method_spec)))
       self.class.send(:define_method, method_spec["name"].underscore << "!") do |*args|
         options = args[-1]
-        encoded_inputs = encode_inputs(args[0..-2], method_spec["inputs"])
+        encoded_inputs = W3::Encoder::encode_inputs(args[0..-2], method_spec["inputs"])
         @eth.send_transaction!({
           "from" => options["from"],
           "to" => @address,

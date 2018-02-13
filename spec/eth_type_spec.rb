@@ -6,9 +6,7 @@ S.check_asserts = true
 RSpec.describe W3::ETH_Type do
   context "testing out ETH_Type specs" do
 
-    range_of_ints = (8..256).select {|x| x % 8 == 0}
-
-    range_of_ints.each do |n|
+    W3::ETH_Type::range_of_ints.each do |n|
       it "checks W3::ETH_Type/uint#{n} spec" do
         uint_spec_name = "W3::ETH_Type/uint#{n}".to_sym
         S.assert(uint_spec_name, 42)
@@ -43,7 +41,7 @@ RSpec.describe W3::ETH_Type do
       expect(S.invalid?(S.conform(:"W3::ETH_Type/int", -1 * (2 ** 256 + 1))))
     end
 
-    (1..32).each do |n|
+    W3::ETH_Type::range_of_bytes.each do |n|
       it "checks W3::ETH_Type/bytes#{n} spec" do
       bytes_spec_name = "W3::ETH_Type/bytes#{n}".to_sym
       test_str = "".tap do |s|

@@ -1,11 +1,18 @@
 module W3
   module ETH_Type
     extend S::NamespacedSymbols
+
+    def self.range_of_ints
+      (8..256).select {|x| x % 8 == 0}
+    end
+
+    def self.range_of_bytes
+      (1..32)
+    end
   
     S.def ns(:integer), Integer
     S.def ns(:positive_integer), ->(x){x >= 0}
-  
-    range_of_ints = (8..256).select {|x| x % 8 == 0}
+   
     range_of_ints.each do |n|
       uint_spec_name = "W3::ETH_Type/uint#{n}".to_sym
       S.def uint_spec_name, S.and(ns(:integer), S.and(ns(:positive_integer), ->(x){x < 2 ** n}))
@@ -24,7 +31,7 @@ module W3
     S.def ns(:uint_array), S.coll_of(ns(:uint))
     S.def ns(:int_array), S.coll_of(ns(:int))
   
-    (1..32).each do |n|
+    range_of_bytes.each do |n|
       bytes_spec_name = "W3::ETH_Type/bytes#{n}".to_sym
       S.def bytes_spec_name, S.and(String, ->(x){ x.bytesize > 0 && x.bytesize <= n * 2 })
   

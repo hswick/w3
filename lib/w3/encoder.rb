@@ -3,7 +3,7 @@ module W3
 
     @@encoding = {}
 
-    def encode_inputs(inputs, inputs_spec)
+    def self.encode_inputs(inputs, inputs_spec)
       if inputs && inputs_spec
         [].tap do |input|
           inputs_spec.each_with_index do |input_type, i|
@@ -16,7 +16,7 @@ module W3
       end
     end
 
-    def encode_value(type, value)
+    def self.encode_value(type, value)
       encoded_value = @@encoding[type].call(value)
       raise "Unable to encode type: #{type}" if encoded_value.nil?
       encoded_value
@@ -35,6 +35,7 @@ module W3
     end
 
     @@encoding["bytes32"] = fn do |value|
+      pp value.length
       value.bytes.map {|x| x.to_s(16).rjust(2, '0')}.join("").ljust(64, '0')
     end
 
