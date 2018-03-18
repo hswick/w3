@@ -32,8 +32,10 @@ RSpec.describe W3::Decoder do
     end
 
     # W3::ETH_Type::range_of_bytes.each do |n|
-    #   it "decodes bool #{n}" do
-
+    #   it "decodes bytes#{n}" do
+    #     good_uint = "0x" + (2 ** n - 1).to_s(16)
+    #     bad_uint = "0x" + (2 ** n).to_s(16)
+    #     pp W3::Decoder::decode_value("bytes#{n}", good_uint)
     #   end
     # end
   end

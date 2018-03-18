@@ -13,11 +13,13 @@ complex = W3::Contract.new(eth, abi)
 bin =  File.read(File.join(File.dirname(__FILE__), './build/Complex.abi'))
 complex.at! complex.deploy!(bin, {"from" => accounts[0], "gas" => 300000}, 6, "foo")
 
-pp complex.get_both
+pp complex.address
 
-complex.set_bar_foo! true, {"from" => accounts[0]}
-pp complex.get_bar_foo
+#pp complex.get_both
 
-pp complex.get_foo_boo 66
+# complex.set_bar_foo! true, {"from" => accounts[0]}
+# pp complex.get_bar_foo
 
-pp complex.get_bro_and_bro_bro
+# pp complex.get_foo_boo 66
+
+# pp complex.get_bro_and_bro_bro

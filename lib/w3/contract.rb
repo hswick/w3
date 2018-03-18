@@ -49,7 +49,11 @@ module W3
         "data" => encoded_inputs.unshift("0x" + contract_binary).join,
         "gas" => "0x" + to_hex_string(options["gas"])
       })
-      @eth.get_tx_receipt(tx)["contractAddress"]
+      receipt = @eth.get_tx_receipt(tx)
+      if receipt['status'] == 0
+        throw "Contract was not successfully deployed"
+      end
+      receipt["contractAddress"]
     end
   
     private
