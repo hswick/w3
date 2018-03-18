@@ -32,8 +32,7 @@ module W3
       raise "Unable to decode type: #{type}" if decoded_value.nil?
       decoded_value
     end
-
-    #This will probably work for all uints
+    
     W3::ETH_Type::range_of_ints.each do |n|
       @@decoding["uint#{n}"] = fn do |value|
         value.to_i(16)

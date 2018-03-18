@@ -22,6 +22,7 @@ module W3
       encoded_value
     end
 
+    #parameterize 256 for n integers
     def self.to_twos_complement(number)
       (number & ((1 << 256) - 1))
     end
@@ -35,7 +36,6 @@ module W3
     end
 
     @@encoding["bytes32"] = fn do |value|
-      pp value.length
       value.bytes.map {|x| x.to_s(16).rjust(2, '0')}.join("").ljust(64, '0')
     end
 

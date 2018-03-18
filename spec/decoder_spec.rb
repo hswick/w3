@@ -26,8 +26,14 @@ RSpec.describe W3::Decoder do
       end
     end
 
+    it "decodes bool" do
+      S.assert :"W3::ETH_Type/bool", W3::Decoder::decode_value("bool", "0x01")
+      expect(S.invalid?(S.conform(:"W3::ETH_Type/bool", "0x02"))).to eq true
+    end
+
     # W3::ETH_Type::range_of_bytes.each do |n|
     #   it "decodes bool #{n}" do
+
     #   end
     # end
   end
