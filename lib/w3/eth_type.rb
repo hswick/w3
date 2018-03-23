@@ -37,6 +37,8 @@ module W3
   
       S.def "W3::ETH_Type/bytes#{n}_array".to_sym, S.coll_of(bytes_spec_name)
     end
+
+    S.def ns(:byte), S.valid?(ns(:bytes1))
   
     S.def ns(:bool), ->(x){x == true || x == false}
     S.def ns(:bool_array), S.coll_of(ns(:bool))

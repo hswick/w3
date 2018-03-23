@@ -50,6 +50,10 @@ module W3
       end
     end
 
+    @@decoding["byte"] = fn do |value|
+      [value].pack('H*').strip
+    end
+
     @@decoding["bool"] = fn do |value|
       value[-1].to_i ? true : false
     end
