@@ -31,12 +31,17 @@ RSpec.describe W3::Decoder do
       expect(S.invalid?(S.conform(:"W3::ETH_Type/bool", "0x02"))).to eq true
     end
 
+    it "decodes a bytes32" do
+      foo = "666f6f0000000000000000000000000000000000000000000000000000000000"#foo
+      decoded = W3::Decoder::decode_value("bytes32", foo)
+      S.assert :"W3::ETH_Type/bytes32", decoded
+      puts decoded
+      expect("foo" == decoded).to eq true
+    end
+
+    #TODO: Test range of bytes
     # W3::ETH_Type::range_of_bytes.each do |n|
-    #   it "decodes bytes#{n}" do
-    #     good_uint = "0x" + (2 ** n - 1).to_s(16)
-    #     bad_uint = "0x" + (2 ** n).to_s(16)
-    #     pp W3::Decoder::decode_value("bytes#{n}", good_uint)
-    #   end
+    #   #asserting on range of bytes
     # end
   end
 end

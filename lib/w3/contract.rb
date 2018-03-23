@@ -44,14 +44,15 @@ module W3
 
     def deploy!(contract_binary, options, *args)
       encoded_inputs = W3::Encoder::encode_inputs(args, @constructor_args)
+      data = encoded_inputs.unshift("0x" + contract_binary).join
       tx = @eth.send_transaction!({
         "from" => options["from"],
-        "data" => encoded_inputs.unshift("0x" + contract_binary).join,
+        "data" => data,
         "gas" => "0x" + to_hex_string(options["gas"])
       })
       receipt = @eth.get_tx_receipt(tx)
       if receipt['status'] == 0
-        throw "Contract was not successfully deployed"
+        throw "Contract was not successfully deployed. Contract binary: #{data}"
       end
       receipt["contractAddress"]
     end

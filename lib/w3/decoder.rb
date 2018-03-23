@@ -3,13 +3,14 @@ module W3
 
     @@decoding = {}
 
-    S.def :"W3::Decoder/output_string", S.and(String, S.and(:"W3::ETH_Type/0x", ->(x){x.length == 66}))
+    # TODO: better output string spec
+    # S.def :"W3::Decoder/output_string", S.and(String, S.and(:"W3::ETH_Type/0x", ->(x){x.length % 66 == 0}))
 
     def self.decode_outputs(output_string, outputs_spec)
 
-      if S.invalid?(S.conform(:"W3::Decoder/output_string", output_string))
-        raise "Not valid output encoding #{output_string}"
-      end
+      # if S.invalid?(S.conform(:"W3::Decoder/output_string", output_string))
+      #   raise "Not valid output encoding #{output_string}"
+      # end
 
       outputs = output_string[2..-1].scan(/.{1,64}/)
       if outputs_spec.length > 1
